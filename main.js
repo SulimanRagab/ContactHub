@@ -50,7 +50,8 @@ let valuename = document.getElementById("name")
 let valuephone = document.getElementById("phone")
 let valueEmail = document.getElementById("email")
 let valueAddres = document.getElementById("addres")
-
+let valuegroup = document.getElementById("group")
+addContact.addEventListener("click",displaynone)
  let allCards = [];
  if(localStorage.getItem("storageCards")){
    allCards = JSON.parse(localStorage.getItem("storageCards"))
@@ -58,24 +59,43 @@ let valueAddres = document.getElementById("addres")
  }
 
  function createContact(){
+if(valuename.value.trim() === ""){
+ Swal.fire({icon: "error",
+  title: "Missing Name",
+  text: "Please enter a name for the contact!",});
+  return;
+}if(valuephone.value.trim() === ""){
+Swal.fire({icon:"error",
+  title:"Missing Phone",
+  text:"Please enter a phone number!",});
+  return;
+}else{
+Swal.fire({
+  title: "Added!",
+  icon: "success",
+  draggable: true
+});
+ }
   let newcard = {
   imag:fileimag.files[0] ? viewimge.src : "",  
   name:valuename.value,
   phonne:valuephone.value,
   email:valueEmail.value,
-  addrs:valueAddres.value
+  addrs:valueAddres.value,
+  group:valuegroup.value
  };
  allCards.push(newcard);
 console.log(allCards);
 localStorage.setItem("storageCards",JSON.stringify(allCards));
  }
- 
+
   function allevents(){
   createContact();
   displaycards();
  }
 addContact.addEventListener("click",allevents)
  function displaycards(){
+  
    let htmlMarkupCards = "";
    let numbercards = "";
 for(let i = 0; i < allCards.length; i++){
@@ -83,7 +103,7 @@ for(let i = 0; i < allCards.length; i++){
  if(allCards[i].imag){
   imagmarkup = `<img src="${allCards[i].imag}" alt="">`;
  }else{
-  imagmarkup = `<div class="elseimage bg-black">${allCards[i].name[0]}</div>`;
+  imagmarkup = `<div class="elseimage bg-black">${allCards[i].name ? allCards[i].name[0] :"?" }</div>`;
  }
   htmlMarkupCards += `
   <div class="card ms-3 col-md-5">
@@ -111,7 +131,7 @@ for(let i = 0; i < allCards.length; i++){
     </div>
   </div>
   <div>
-    <p class="Group">famlyyy</p>
+    <p class="Group">${allCards[i].group}</p>
   </div>
   <div id="endcard">
     <div class="icons container">
