@@ -20,145 +20,147 @@
 </head>
 
 <body style="background-color: #f7f6fd;">
-   <header>
+  <header>
     <nav class="navbar d-flex justify-content-between bg-body-tertiary">
-    <div class="ic-t ms-6 w-70">
-      <div><i id="fa-slid" class="fa-solid fa-address-book"></i></div>
-      <div class="d-block">
-        <h1 class="h1">Contact<span style="color:#5c35f8;">Hub</span></h1>
-        <p class="p1">Smart Contact Manager</p>
+      <div class="ic-t ms-6 w-70">
+        <div><i id="fa-slid" class="fa-solid fa-address-book"></i></div>
+        <div class="d-block">
+          <h1 class="h1">Contact<span style="color:#5c35f8;">Hub</span></h1>
+          <p class="p1">Smart Contact Manager</p>
+        </div>
       </div>
-    </div>
 
-    <div class="d-flex justify-content-around align-items-center g-3 p-2 flex-shrink-1 ">
-      <button id="addButton" class="brtn-2"><span><i class="fa-solid fa-plus"></i></span> AddContact</button>
+      <div class="d-flex justify-content-around align-items-center g-3 p-2 flex-shrink-1 ">
+        <button id="addButton" class="brtn-2"><span><i class="fa-solid fa-plus"></i></span> AddContact</button>
 
-      <i class="fa-solid mt-4 fs-6 ms-2 me-3 text-secondary fa-gear"></i>
-      <i class="fa-solid mt-4 fs-6 ms-2 me-3 text-secondary fa-bell"></i>
-      <img class="imeeg me-3" src="imeg/imgi_1_avatar-4.jpg" alt="">
-      <div id="from" class="w-50 h-50 bg-info"></div>
-    </div>
-  </nav>
+        <i class="fa-solid mt-4 fs-6 ms-2 me-3 text-secondary fa-gear"></i>
+        <i class="fa-solid mt-4 fs-6 ms-2 me-3 text-secondary fa-bell"></i>
+        <img class="imeeg me-3" src="imeg/imgi_1_avatar-4.jpg" alt="">
+        <div id="from" class="w-50 h-50 bg-info"></div>
+      </div>
+    </nav>
   </header>
   <main>
-  <div id="blur" class="bllur">
-  </div>
-  <!--  -->
-  <form id="form" class="frro">
-    <div class="d-flex justify-content-between">
-      <div>
-        <h1 style="font-weight: 800; font-size: 20px;">Add New Contact</h1>
-      </div>
-      <i id="X" class="fa-solid fa-xmark fa-lg fw-3"></i>
+    <div id="blur" class="bllur">
     </div>
-    <hr style="width:100vh; height: 10px;">
-    
-    <input id="fileimag" class="addimg" type="file" accept="image/*" hidden>
-    <img for="valimg" id="viewimge" class="def" src="" alt="">
-    <img for="valimg" id="defultphoto" class="def" src="imeg/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt="">
-    <label for="valimg" id="openphoto" class="addimg"><i class="fa-solid fa-camera"></i>Change Photo</label>
-    <!-- Name -->
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label mb-3">Full Name *</label>
-      <input type="text" class="form-cntrol" id="name" placeholder="Enter full name">
-    </div>
-    <!-- Phone -->
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label mb-3">Phone Number *</label>
-      <input type="tel" class="form-cntrol" id="phone"
-        placeholder="e.g., 01012345678">
-    </div>
-    <!-- Email -->
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label ">Email address</label>
-      <input type="email" class="form-cntrol " id="email" placeholder="name@example.com">
-    </div>
-    <!-- Address -->
-    <div class="mb-3">
-      <label class="form-label mb-3">Address</label>
-      <input type="text" id="addres" class="form-cntrol" placeholder="Enter address">
-    </div>
-<!-- Group -->
-    <div class="mb-3">
-      <label class="form-label mb-3">Group</label>
-      <select class="form-cntrol" name="" id="sel">
-        <option value="Select a group">Select a group</option>
-        <option value="famile">famile</option>
-        <option value="frinds">frinds</option>
-        <option value="work">work</option>
-        <option value="school">school</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label class="form-label mb-3 ">Notes</label>
-      <input type="text" class="form-cntrol p-3" placeholder="Add notes about this contact">
-    </div>
-    <div class="d-flex alltchck">
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1"><span><i class=" fa-solid me-1 fa-star"
-              style="color:#feaa01;"></i></span>Favorite</label>
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck2">
-        <label class="form-check-label" for="exampleCheck2"><span><i class="fa-solid me-1 fa-heart-pulse"
-              style="color: crimson;"></i></span> Emergency</label>
-      </div>
-    </div>
-
-    <div class="d-flex">
-      <button type="button" id="cancle-button" class="brtncencel">Cancle</button>
-      <button type="button" id="addContact" class="brtn">Save Contact</button>
-      <button type="button" onclick="upddproduct()" id="upd" class="brtn">Update Contact</button>
-    </div>
-  </form>
-
-  <!--  -->
-  
-  <div class="d-flex mt-5 container justify-content-between">
-    <div class="card-1 me-0">
-      <div class="iv">
-        <div class="childee">
-          <i id="fa-siid" class="fa-solid me-3 fa-users-line"></i>
-          <div>
-            <h1 style="display: block;font-size: small ;font-weight: 600;">TOTAL<br><span class="fs-3 fw-bold" id="cardsNumber"></span></h1>
-            
-          </div>
+    <!--  -->
+    <form id="form" class="frro">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h1 style="font-weight: 800; font-size: 20px;">Add New Contact</h1>
         </div>
-
+        <i id="X" class="fa-solid fa-xmark fa-lg fw-3"></i>
       </div>
-    </div>
-    <div class="card-1 me-0">
-      <div class="iv">
-        <div class="childee">
-          <i id="fa-sid" class=" fa-solid me-3 fa-star"></i>
-          <div>
-            <h1 style="font-size: small ;font-weight: 600; display: block;">Favorites</h1>
-            <h1 id="st"></h1>
-          </div>
+      <hr style="width:100vh; height: 10px;">
+
+      <input id="fileimag" class="addimg" type="file" accept="image/*" hidden>
+      <img for="valimg" id="viewimge" class="def" src="" alt="">
+      <img for="valimg" id="defultphoto" class="def" src="imeg/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.jpg"
+        alt="">
+      <label for="valimg" id="openphoto" class="addimg"><i class="fa-solid fa-camera"></i>Change Photo</label>
+      <!-- Name -->
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label mb-3">Full Name *</label>
+        <input type="text" class="form-cntrol" id="name" placeholder="Enter full name">
+      </div>
+      <!-- Phone -->
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label mb-3">Phone Number *</label>
+        <input type="tel" class="form-cntrol" id="phone" placeholder="e.g., 01012345678">
+      </div>
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label ">Email address</label>
+        <input type="email" class="form-cntrol " id="email" placeholder="name@example.com">
+      </div>
+      <!-- Address -->
+      <div class="mb-3">
+        <label class="form-label mb-3">Address</label>
+        <input type="text" id="addres" class="form-cntrol" placeholder="Enter address">
+      </div>
+      <!-- Group -->
+      <div class="mb-3">
+        <label class="form-label mb-3">Group</label>
+        <select class="form-cntrol" name="" id="group">
+          <option value="Select a group">Select a group</option>
+          <option value="famile">famile</option>
+          <option value="frinds">frinds</option>
+          <option value="work">work</option>
+          <option value="school">school</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label mb-3 ">Notes</label>
+        <input type="text" class="form-cntrol p-3" placeholder="Add notes about this contact">
+      </div>
+      <div class="d-flex alltchck">
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1"><span><i class=" fa-solid me-1 fa-star"
+                style="color:#feaa01;"></i></span>Favorite</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck2">
+          <label class="form-check-label" for="exampleCheck2"><span><i class="fa-solid me-1 fa-heart-pulse"
+                style="color: crimson;"></i></span> Emergency</label>
         </div>
       </div>
-    </div>
-    <div class="card-1 me-0">
-      <div class="iv">
-            <div class="childee">
-          <i id="fa-sld" class="fa-solid me-3 fa-heart-pulse"></i>
-          <div>
-            <h1 style="font-size: small ;font-weight: 600;">Emergency</h1>
-            <h1 id="em"></h1>
-          </div>
-			</div>
 
+      <div class="d-flex">
+        <button type="button" id="cancle-button" class="brtncencel">Cancle</button>
+        <button type="button" id="addContact" class="brtn">Save Contact</button>
+        <button type="button" onclick="upddproduct()" id="upd" class="brtn">Update Contact</button>
+      </div>
+    </form>
+
+    <!--  -->
+
+    <div class="d-flex mt-5 container justify-content-between">
+      <div class="card-1 me-0">
+        <div class="iv">
+          <div class="childee">
+            <i id="fa-siid" class="fa-solid me-3 fa-users-line"></i>
+            <div>
+              <h1 style="display: block;font-size: small ;font-weight: 600;">TOTAL<br><span class="fs-3 fw-bold"
+                  id="cardsNumber"></span></h1>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-1 me-0">
+        <div class="iv">
+          <div class="childee">
+            <i id="fa-sid" class=" fa-solid me-3 fa-star"></i>
+            <div>
+              <h1 style="font-size: small ;font-weight: 600; display: block;">Favorites</h1>
+              <h1 id="st"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-1 me-0">
+        <div class="iv">
+          <div class="childee">
+            <i id="fa-sld" class="fa-solid me-3 fa-heart-pulse"></i>
+            <div>
+              <h1 style="font-size: small ;font-weight: 600;">Emergency</h1>
+              <h1 id="em"></h1>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
-  </div>
     <section class="container mt-5">
       <div class="crr-1  col-lg-8">
         <h1>All Contacts</h1>
         <p>Manage and organize your <span id="numbercard2"></span> contacts</p>
-        <input class="ser" oninput="search(this.value)" type="search" placeholder="🔍 Search by name, phone,or email...">
+        <input class="ser" oninput="search(this.value)" type="search"
+          placeholder="🔍 Search by name, phone,or email...">
         <div class="row g-3 mt-2" id="upcard">
-<!-- <div class="card ms-3 col-md-5">
+          <!-- <div class="card ms-3 col-md-5">
   <div class="d-flex">
     <div class="icts">
       <div class="elseimage">A</div>
@@ -202,8 +204,8 @@
   </div>
 
 </div> -->
-</div>
-</div>
+        </div>
+      </div>
 
       <div class="crr-2  col-md-4">
         <div class="row g-3">
@@ -279,7 +281,7 @@
 
         </div>
       </div>
-  </section>  
+    </section>
   </main>
   <!-- <div id="che" class="app"><div class="checkk">
     <div style="display: block; text-align: center; margin-top: 20%;"><i class="fa-solid mb-3 fs-3 fa-check" style="color: #63E6BE;"></i>
@@ -289,7 +291,8 @@
   </div></div> -->
 
   <!-- <div class="bac"><img src="imgi_1_avatar-4.jpg" alt=""></div>  -->
-  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="main.js"></script>
 </body>
+
 </html>

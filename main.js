@@ -56,26 +56,34 @@ addContact.addEventListener("click",displaynone)
  if(localStorage.getItem("storageCards")){
    allCards = JSON.parse(localStorage.getItem("storageCards"))
  displaycards()
- }
+ } let regex = /^01[0125]\d{8}$/;
+function validatephone() {
+   if(regex.test(valuephone.value)) {
+      phoneMessage.innerHTML ="";
+   } else {
+      phoneMessage.innerHTML = "Please enter a valid Egyptian phone number !";
+   }
+}valuephone.addEventListener("input",validatephone);
+let regexemail = /^[a-z0-9]+@[a-z]+\.[a-z]{2,}$/i;
+function validateemaile(){
+if(regexemail.test(valueEmail.value)){
+  emailMessage.innerHTML ="";
+} else{
+  emailMessage.innerHTML = "Please enter a valid email address!";
+}
+}valueEmail.addEventListener("input",validateemaile);
 
  function createContact(){
-if(valuename.value.trim() === ""){
- Swal.fire({icon: "error",
-  title: "Missing Name",
-  text: "Please enter a name for the contact!",});
+if(!validitiondata1()){
   return;
-}if(valuephone.value.trim() === ""){
-Swal.fire({icon:"error",
-  title:"Missing Phone",
-  text:"Please enter a phone number!",});
+}if(!validitiondata2()){
   return;
-}else{
-Swal.fire({
+ }
+ else{Swal.fire({
   title: "Added!",
   icon: "success",
   draggable: true
-});
- }
+});}
   let newcard = {
   imag:fileimag.files[0] ? viewimge.src : "",  
   name:valuename.value,
@@ -84,8 +92,8 @@ Swal.fire({
   addrs:valueAddres.value,
   group:valuegroup.value
  };
+ 
  allCards.push(newcard);
-console.log(allCards);
 localStorage.setItem("storageCards",JSON.stringify(allCards));
  }
 
