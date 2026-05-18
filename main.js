@@ -50,32 +50,60 @@ let valuename = document.getElementById("name")
 let valuephone = document.getElementById("phone")
 let valueEmail = document.getElementById("email")
 let valueAddres = document.getElementById("addres")
-
+let valuegroup = document.getElementById("group")
+addContact.addEventListener("click",displaynone)
  let allCards = [];
  if(localStorage.getItem("storageCards")){
    allCards = JSON.parse(localStorage.getItem("storageCards"))
  displaycards()
- }
+ } let regex = /^01[0125]\d{8}$/;
+function validatephone() {
+   if(regex.test(valuephone.value)) {
+      phoneMessage.innerHTML ="";
+   } else {
+      phoneMessage.innerHTML = "Please enter a valid Egyptian phone number !";
+   }
+}valuephone.addEventListener("input",validatephone);
+let regexemail = /^[a-z0-9]+@[a-z]+\.[a-z]{2,}$/i;
+function validateemaile(){
+if(regexemail.test(valueEmail.value)){
+  emailMessage.innerHTML ="";
+} else{
+  emailMessage.innerHTML = "Please enter a valid email address!";
+}
+}valueEmail.addEventListener("input",validateemaile);
 
  function createContact(){
+if(!validitiondata1()){
+  return;
+}if(!validitiondata2()){
+  return;
+ }
+ else{Swal.fire({
+  title: "Added!",
+  icon: "success",
+  draggable: true
+});}
   let newcard = {
   imag:fileimag.files[0] ? viewimge.src : "",  
   name:valuename.value,
   phonne:valuephone.value,
   email:valueEmail.value,
-  addrs:valueAddres.value
+  addrs:valueAddres.value,
+  group:valuegroup.value
  };
+ 
  allCards.push(newcard);
-console.log(allCards);
 localStorage.setItem("storageCards",JSON.stringify(allCards));
  }
- 
+
   function allevents(){
   createContact();
   displaycards();
  }
 addContact.addEventListener("click",allevents)
  function displaycards(){
+  
    let htmlMarkupCards = "";
    let numbercards = "";
 for(let i = 0; i < allCards.length; i++){
@@ -83,7 +111,7 @@ for(let i = 0; i < allCards.length; i++){
  if(allCards[i].imag){
   imagmarkup = `<img src="${allCards[i].imag}" alt="">`;
  }else{
-  imagmarkup = `<div class="elseimage bg-black">${allCards[i].name[0]}</div>`;
+  imagmarkup = `<div class="elseimage bg-black">${allCards[i].name ? allCards[i].name[0] :"?" }</div>`;
  }
   htmlMarkupCards += `
   <div class="card ms-3 col-md-5">
@@ -111,7 +139,7 @@ for(let i = 0; i < allCards.length; i++){
     </div>
   </div>
   <div>
-    <p class="Group">famlyyy</p>
+    <p class="Group">${allCards[i].group}</p>
   </div>
   <div id="endcard">
     <div class="icons container">
