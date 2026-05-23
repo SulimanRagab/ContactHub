@@ -27,9 +27,6 @@ fileimag.click()
 viewimge.addEventListener("click",function () {
 fileimag.click()
 })
-viewimge.addEventListener("click",function () {
-fileimag.click()
-})
 fileimag.addEventListener("change",function () {
   let file = fileimag.files[0];
   if (file) { 
@@ -71,6 +68,7 @@ if(regexemail.test(valueEmail.value)){
 
  function createContact(){
   let newcard = {
+  id:Date.now(),
   imag:fileimag.files[0] ? viewimge.src : "",  
   name:valuename.value,
   phonne:valuephone.value,
@@ -160,7 +158,7 @@ for(let i = 0; i < allCards.length; i++){
         <i id="fa-dd" class=" fa-solid fa-star" style="color: #657186;"></i>
         <i id="fa-dd" class="fa-solid fa-heart-pulse" style="color: #657186;"></i>
         <i id="fa-dd" class="fa-solid fa-pen" style="color: #657186;"></i>
-        <i id="fa-dd" class="fa-solid fa-trash" style="color: #515d70;"></i>
+        <i id="iconDelete" onclick="validdelete(${allCards[i].id} ,'${allCards[i].name}')" class="fa-solid fa-trash"></i>
       </div>
     </div>
   </div>
@@ -173,4 +171,31 @@ document.getElementById("upcard").innerHTML = htmlMarkupCards;
 document.getElementById("cardsNumber").innerHTML =  numbercards;
 document.getElementById("numbercard2").innerHTML =  numbercards;
 }
-
+let iconDelete = document.getElementById("iconDelete");
+function deletecards(id){
+allCards = allCards.filter(function (card){
+  return card.id !== id;
+})
+localStorage.setItem("storageCards",JSON.stringify(allCards));
+displaycards()
+}
+function validdelete(id,name){
+  Swal.fire({
+  title: "Delete Contact?",
+  text: `Are you sure you want to delete "${name}" ? This action cannot be undone.`,
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#d33",
+  cancelButtonColor: "#3085d6",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed){
+    deletecards(id);
+  Swal.fire({
+    title: "Deleted!",
+    text: "Your file has been deleted.",
+    icon: "success",
+  }); };
+  
+});
+}  
