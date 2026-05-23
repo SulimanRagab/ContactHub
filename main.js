@@ -1,11 +1,11 @@
-let addButton = document.getElementById("addButton")
+let addContact = document.getElementById("addContact")
 let form = document.getElementById("form")
 let bllur = document.getElementById("blur")
 function display(){
   form.style.display= "block";
   bllur.style.display= "block";
 }
-addButton.addEventListener("click",display)
+addContact.addEventListener("click",display)
 bllur.addEventListener("click",display)
 // جزء اخفاء الفورم والبلور
 let canclebutton = document.getElementById("cancle-button")
@@ -20,7 +20,6 @@ bllur.addEventListener("click",displaynone)
 // ! جزء الصوره
 let openphoto = document.getElementById("openphoto")
 let viewimge = document.getElementById("viewimge")
-let defultphoto = document.getElementById("defultphoto")
 let fileimag = document.getElementById("fileimag")
 openphoto.addEventListener("click",function () {
 fileimag.click()
@@ -28,15 +27,12 @@ fileimag.click()
 viewimge.addEventListener("click",function () {
 fileimag.click()
 })
-defultphoto.addEventListener("click",function () {
+viewimge.addEventListener("click",function () {
 fileimag.click()
 })
-viewimge.style.display = "none"
 fileimag.addEventListener("change",function () {
   let file = fileimag.files[0];
   if (file) { 
-    viewimge.style.display = "block"
-    defultphoto.style.display = "none"
     let reader = new FileReader();
     reader.onload = function () {
       viewimge.src = reader.result;
@@ -45,13 +41,13 @@ fileimag.addEventListener("change",function () {
   }
 });
 // ! \\
-let addContact = document.getElementById("addContact")
+let saveContact = document.getElementById("saveContact")
 let valuename = document.getElementById("name")
 let valuephone = document.getElementById("phone")
 let valueEmail = document.getElementById("email")
 let valueAddres = document.getElementById("addres")
 let valuegroup = document.getElementById("group")
-addContact.addEventListener("click",displaynone)
+
  let allCards = [];
  if(localStorage.getItem("storageCards")){
    allCards = JSON.parse(localStorage.getItem("storageCards"))
@@ -74,16 +70,6 @@ if(regexemail.test(valueEmail.value)){
 }valueEmail.addEventListener("input",validateemaile);
 
  function createContact(){
-if(!validitiondata1()){
-  return;
-}if(!validitiondata2()){
-  return;
- }
- else{Swal.fire({
-  title: "Added!",
-  icon: "success",
-  draggable: true
-});}
   let newcard = {
   imag:fileimag.files[0] ? viewimge.src : "",  
   name:valuename.value,
@@ -92,18 +78,41 @@ if(!validitiondata1()){
   addrs:valueAddres.value,
   group:valuegroup.value
  };
- 
+ if(!validitiondata1()){
+  display()
+  return;
+}
+if(!validitiondata2()){
+  display()
+  return;
+ }
+ else{displaynone();
+  Swal.fire({
+  title: "Added!",
+  icon: "success",
+  draggable: true
+});
+}
+
+clearinputapAddcontact()
  allCards.push(newcard);
 localStorage.setItem("storageCards",JSON.stringify(allCards));
- }
-
+}
+function clearinputapAddcontact(){
+  viewimge.src = "imeg/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.jpg";
+fileimag.value = "";
+valuename.value = "";
+valuephone.value = "";
+valueEmail.value = "";
+valueAddres.value = "";
+valuegroup.value = "";
+}
   function allevents(){
-  createContact();
-  displaycards();
- }
-addContact.addEventListener("click",allevents)
- function displaycards(){
-  
+createContact();
+displaycards();
+}
+saveContact.addEventListener("click",allevents)
+ function displaycards(){ 
    let htmlMarkupCards = "";
    let numbercards = "";
 for(let i = 0; i < allCards.length; i++){
@@ -164,3 +173,4 @@ document.getElementById("upcard").innerHTML = htmlMarkupCards;
 document.getElementById("cardsNumber").innerHTML =  numbercards;
 document.getElementById("numbercard2").innerHTML =  numbercards;
 }
+

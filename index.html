@@ -31,7 +31,7 @@
       </div>
 
       <div class="d-flex justify-content-around align-items-center g-3 p-2 flex-shrink-1 ">
-        <button id="addButton" class="brtn-2"><span><i class="fa-solid fa-plus"></i></span> AddContact</button>
+        <button id="addContact" class="brtn-2"><span><i class="fa-solid fa-plus"></i></span> AddContact</button>
 
         <i class="fa-solid mt-4 fs-6 ms-2 me-3 text-secondary fa-gear"></i>
         <i class="fa-solid mt-4 fs-6 ms-2 me-3 text-secondary fa-bell"></i>
@@ -54,24 +54,25 @@
       <hr style="width:100vh; height: 10px;">
 
       <input id="fileimag" class="addimg" type="file" accept="image/*" hidden>
-      <img for="valimg" id="viewimge" class="def" src="" alt="">
-      <img for="valimg" id="defultphoto" class="def" src="imeg/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.jpg"
-        alt="">
+      <img for="valimg" id="viewimge" class="def" src="imeg/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt="">
       <label for="valimg" id="openphoto" class="addimg"><i class="fa-solid fa-camera"></i>Change Photo</label>
       <!-- Name -->
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label mb-3">Full Name *</label>
         <input type="text" class="form-cntrol" id="name" placeholder="Enter full name">
+       
       </div>
       <!-- Phone -->
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label mb-3">Phone Number *</label>
-        <input type="tel" class="form-cntrol" id="phone" placeholder="e.g., 01012345678">
+        <input type="tel" class="form-cntrol" id="phone" pattern="01[0-2,5]{1}[0-9]{8}"placeholder="e.g., 01012345678"> 
+        <p id="phoneMessage" class="text-danger " ></p>
       </div>
       <!-- Email -->
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label ">Email address</label>
         <input type="email" class="form-cntrol " id="email" placeholder="name@example.com">
+        <p id="emailMessage" class="text-danger "></p>
       </div>
       <!-- Address -->
       <div class="mb-3">
@@ -108,8 +109,8 @@
 
       <div class="d-flex">
         <button type="button" id="cancle-button" class="brtncencel">Cancle</button>
-        <button type="button" id="addContact" class="brtn">Save Contact</button>
-        <button type="button" onclick="upddproduct()" id="upd" class="brtn">Update Contact</button>
+        <button type="button" id="saveContact" class="brtn">Save Contact</button>
+        <!-- <button type="button" onclick="upddproduct()" id="upd" class="brtn">Update Contact</button> -->
       </div>
     </form>
 
@@ -292,6 +293,7 @@
 
   <!-- <div class="bac"><img src="imgi_1_avatar-4.jpg" alt=""></div>  -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="validitiondata.js"></script>
   <script src="main.js"></script>
 </body>
 
