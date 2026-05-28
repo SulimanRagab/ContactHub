@@ -21,8 +21,6 @@ Swal.fire({icon:"error",
   return false;
 }return true;
  }
-
-
 function validitiondata2(){
  let isphone = false;
  let isemaile = false;
@@ -33,15 +31,41 @@ function validitiondata2(){
     isemaile = true;
   }}
   if(isphone){Swal.fire({icon:"error",
-  title:"الرقم متكرر",
+  title:"الرقم موجود بالفعل",
   text:"Please enter a phone number!",});
   return false;
 }
   if(isemaile){
     Swal.fire({icon:"error",
-  title:"Email already exists",
+  title:"الأيميل موجود بالفعل",
   text:"Please enter a different email address !",});
   return false;
   }
   return true;
 }
+function dataUpdateValidition(){
+ let isphone = false;
+ let isemaile = false;
+  for(let i = 0; i < allCards.length; i++){
+ 
+ if(allCards[i].id !== theValueNew.id &&
+  allCards[i].phonne === valuephone.value){
+  isphone = true;
+ }if(allCards[i].id !== theValueNew.id &&
+  allCards[i].email === valueEmail.value){
+    isemaile = true;
+  }}
+  if(isphone){Swal.fire({icon:"error",
+  title:"الرقم موجود بالفعل",
+  text:"Please enter a phone number!",});
+  return false;
+}
+  if(isemaile){
+    Swal.fire({icon:"error",
+  title:"الأيميل موجود بالفعل",
+  text:"Please enter a different email address !",});
+  return false;
+  }
+  return true;
+}
+

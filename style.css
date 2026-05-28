@@ -491,8 +491,23 @@ align-items: center;
   padding: 8px 8px;
   cursor: pointer;
 }
-
-#iconDelete{
+.fa-pen{
+    font-size: medium;
+    color: #6A7282;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 8px 8px;
+    transition: all 0.3s ease;
+}
+.fa-pen:hover {
+  background-color: #845bff41;
+  color: #4311db;
+  border-radius: 5px;
+  cursor: pointer;
+  width: fit-content;
+  padding: 8px 8px;
+}
+.fa-trash{
   color: #6a7282;
   border-radius: 5px;
   width: fit-content;
@@ -500,7 +515,7 @@ align-items: center;
   transition: all 0.3s ease;
 }
 
-#iconDelete:hover {
+.fa-trash:hover {
   background-color: #ff7b7b3c;
   color: #f31e1e;
   border-radius: 5px;
