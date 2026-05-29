@@ -31,7 +31,7 @@
       </div>
 
       <div class="d-flex justify-content-around align-items-center g-3 p-2 flex-shrink-1 ">
-        <button id="addContact" class="brtn-2"><span><i class="fa-solid fa-plus"></i></span> AddContact</button>
+        <button id="addContact" class="brtn-2"><span><i class="fa-solid fa-plus"></i></span>Add Contact</button>
 
         <i class="fa-solid mt-4 fs-6 ms-2 me-3 text-secondary fa-gear"></i>
         <i class="fa-solid mt-4 fs-6 ms-2 me-3 text-secondary fa-bell"></i>
@@ -110,7 +110,7 @@
       <div class="d-flex">
         <button type="button" id="cancle-button" class="brtncencel">Cancle</button>
         <button type="button" id="saveContact" class="brtn">Save Contact</button>
-        <!-- <button type="button" onclick="upddproduct()" id="upd" class="brtn">Update Contact</button> -->
+        <button type="button" id="saveupdate" class="brtn" style="display: none;">Save Update</button>
       </div>
     </form>
 
@@ -158,9 +158,13 @@
       <div class="crr-1  col-lg-8">
         <h1>All Contacts</h1>
         <p>Manage and organize your <span id="numbercard2"></span> contacts</p>
-        <input class="ser" oninput="search(this.value)" type="search"
-          placeholder="🔍 Search by name, phone,or email...">
-        <div class="row g-3 mt-2" id="upcard">
+        <input id="search" type="search"
+          placeholder= "🔍 Search by name, phone,or email, group...">
+            <!-- <div class="message">
+            <i class="fa-solid fa-address-book"></i>
+            <p class="nocontacts">No contacts found <br> <span class="addContact">Click "Add Contact" to get started</span></p>
+          </div> -->
+          <div class="row g-3 mt-2" id="upcard">
           <!-- <div class="card ms-3 col-md-5">
   <div class="d-flex">
     <div class="icts">

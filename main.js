@@ -122,7 +122,20 @@ valuegroup.value = "";
 } 
 displaycards(allCards);
 saveContact.addEventListener("click",allevents)
- function displaycards(Cards){ 
+ function displaycards(Cards){
+   if(Cards.length === 0){
+let htmlmarkupmessage = `<div class="message">
+  <i class="fa-solid fa-address-book"></i>
+  <p class="nocontacts">No contacts found <br> <span class="addContact">Click "Add Contact" to get started</span></p>
+  <button onclick="display(); editButton();" class="brtn-2" <span><i class="fa-solid fa-plus"></i></span>
+    Add Contact
+  </button>
+</div>`;
+document.getElementById("upcard").innerHTML = htmlmarkupmessage;
+document.getElementById("cardsNumber").innerHTML =0;
+document.getElementById("numbercard2").innerHTML =0;
+return;
+} 
    let htmlMarkupCards = "";
    let numbercards = "";
 for(let i = 0; i < Cards.length; i++){
@@ -132,6 +145,7 @@ for(let i = 0; i < Cards.length; i++){
  }else{
   imagmarkup = `<div class="elseimage bg-black">${Cards[i].name ? Cards[i].name[0] :"?" }</div>`;
  }
+
   htmlMarkupCards += `
   <div class="card ms-3 col-md-5">
   <div class="d-flex">
@@ -183,6 +197,7 @@ document.getElementById("upcard").innerHTML = htmlMarkupCards;
 document.getElementById("cardsNumber").innerHTML =  numbercards;
 document.getElementById("numbercard2").innerHTML =  numbercards;
 }
+
 let iconDelete = document.getElementById("iconDelete");
 function deletecards(id){
 allCards = allCards.filter(function (card){
