@@ -53,11 +53,13 @@ let valuephone = document.getElementById("phone")
 let valueEmail = document.getElementById("email")
 let valueAddres = document.getElementById("addres")
 let valuegroup = document.getElementById("group")
-
+// search
+let search = document.getElementById("search")
+//
  let allCards = [];
  if(localStorage.getItem("storageCards")){
    allCards = JSON.parse(localStorage.getItem("storageCards"))
- displaycards()
+ displaycards(allCards);
  } let regex = /^01[0125]\d{8}$/;
 function validatephone() {
    if(regex.test(valuephone.value)) {
@@ -107,7 +109,7 @@ return true;
 function allevents(){
  let success = createContact()
 if(success){
-   displaycards()
+   displaycards(allCards);
 }}
 function clearinputapAddcontact(){
   viewimge.src = "imeg/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.jpg";
@@ -118,16 +120,17 @@ valueEmail.value = "";
 valueAddres.value = "";
 valuegroup.value = "";
 } 
+displaycards(allCards);
 saveContact.addEventListener("click",allevents)
- function displaycards(){ 
+ function displaycards(Cards){ 
    let htmlMarkupCards = "";
    let numbercards = "";
-for(let i = 0; i < allCards.length; i++){
+for(let i = 0; i < Cards.length; i++){
  let imagmarkup = "";
- if(allCards[i].imag){
-  imagmarkup = `<img src="${allCards[i].imag}" alt="">`;
+ if(Cards[i].imag){
+  imagmarkup = `<img src="${Cards[i].imag}" alt="">`;
  }else{
-  imagmarkup = `<div class="elseimage bg-black">${allCards[i].name ? allCards[i].name[0] :"?" }</div>`;
+  imagmarkup = `<div class="elseimage bg-black">${Cards[i].name ? Cards[i].name[0] :"?" }</div>`;
  }
   htmlMarkupCards += `
   <div class="card ms-3 col-md-5">
@@ -136,10 +139,10 @@ for(let i = 0; i < allCards.length; i++){
       ${imagmarkup}
     </div>
     <div class="tx">
-      <h4 id="neem" style=" color: #000000; font-size: 20px;font-weight: 500;margin-left: 10px">${allCards[i].name}</h4>
+      <h4 id="neem" style=" color: #000000; font-size: 20px;font-weight: 500;margin-left: 10px">${Cards[i].name}</h4>
           <div class="d-flex">
             <i id="er" class="fa-solid fa-phone"></i>
-            <p id="num" style="color: #657186; font-size: medium;font-weight: 500;margin-left: 10px;">${allCards[i].phonne}
+            <p id="num" style="color: #657186; font-size: medium;font-weight: 500;margin-left: 10px;">${Cards[i].phonne}
             </p>
           </div>
     </div>
@@ -147,15 +150,15 @@ for(let i = 0; i < allCards.length; i++){
   <div>
     <div class="emaile">
       <i id="fa-emaile" class="fa-solid fa-envelope"></i>
-      <p id="eme" style="color: #657186;" class="txp">${allCards[i].email}</p>
+      <p id="eme" style="color: #657186;" class="txp">${Cards[i].email}</p>
     </div>
     <div class="Addrs">
       <i id="fa-loction" class="fa-solid fa-location-dot"></i>
-      <p id="loc" style="color: #657186;" class="txp">${allCards[i].addrs}</p>
+      <p id="loc" style="color: #657186;" class="txp">${Cards[i].addrs}</p>
     </div>
   </div>
   <div>
-    <p class="Group">${allCards[i].group}</p>
+    <p class="Group">${Cards[i].group}</p>
   </div>
   <div id="endcard">
     <div class="icons container">
@@ -166,15 +169,15 @@ for(let i = 0; i < allCards.length; i++){
       <div class="icons-2">
         <i class=" fa-solid fa-star" style="color: #657186;"></i>
         <i class="fa-solid fa-heart-pulse" style="color: #657186;"></i>
-        <i onclick="cardsUpdate(${allCards[i].id})" class="fa-solid fa-pen"></i>
-        <i onclick="validdelete(${allCards[i].id} ,'${allCards[i].name}')" class="fa-solid fa-trash"></i>
+        <i onclick="cardsUpdate(${Cards[i].id})" class="fa-solid fa-pen"></i>
+        <i onclick="validdelete(${Cards[i].id} ,'${Cards[i].name}')" class="fa-solid fa-trash"></i>
       </div>
     </div>
   </div>
 
 </div>
 `;
- numbercards = allCards.length
+ numbercards = Cards.length
 }
 document.getElementById("upcard").innerHTML = htmlMarkupCards;
 document.getElementById("cardsNumber").innerHTML =  numbercards;
@@ -186,7 +189,7 @@ allCards = allCards.filter(function (card){
   return card.id !== id;
 })
 localStorage.setItem("storageCards",JSON.stringify(allCards));
-displaycards()
+displaycards(allCards);
 }
 function validdelete(id,name){
   Swal.fire({
@@ -208,40 +211,40 @@ function validdelete(id,name){
   
 });
 }
-let theValueNew;
+let editingCard;
 function cardsUpdate(id){  
-theValueNew = allCards.find(function (card){
+editingCard = allCards.find(function (card){
   return card.id === id;
 })
- if(!theValueNew){
+ if(!editingCard){
     return;
   }
-if(theValueNew.imag){
-viewimge.src = theValueNew.imag; 
+if(editingCard.imag){
+viewimge.src = editingCard.imag; 
 }else{
 viewimge.src = "imeg/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.jpg";
 }
-valuename.value =  theValueNew.name;
-valuephone.value = theValueNew.phonne;
-valueEmail.value = theValueNew.email;
-valueAddres.value= theValueNew.addrs;
-valuegroup.value = theValueNew.group;
+valuename.value =  editingCard.name;
+valuephone.value = editingCard.phonne;
+valueEmail.value = editingCard.email;
+valueAddres.value= editingCard.addrs;
+valuegroup.value = editingCard.group;
 display()
 editButtonupdate()
 }
 function savecardsafupdate(){
-   if(!theValueNew){
+   if(!editingCard){
     return;
   }
   
   if(fileimag.files[0]){
-  theValueNew.imag = viewimge.src;  
+  editingCard.imag = viewimge.src;  
   }
-theValueNew.name = valuename.value; 
-theValueNew.phonne = valuephone.value;
-theValueNew.email = valueEmail.value;
-theValueNew.addrs = valueAddres.value;
-theValueNew.group = valuegroup.value;
+editingCard.name = valuename.value; 
+editingCard.phonne = valuephone.value;
+editingCard.email = valueEmail.value;
+editingCard.addrs = valueAddres.value;
+editingCard.group = valuegroup.value;
  if(!validitiondata1()){
   display()
    return;
@@ -251,7 +254,7 @@ theValueNew.group = valuegroup.value;
    return;
 }
 localStorage.setItem("storageCards",JSON.stringify(allCards));
-displaycards();
+displaycards(allCards);;
 clearinputapAddcontact();
 displaynone();
 Swal.fire({
@@ -261,4 +264,21 @@ Swal.fire({
   draggable: true
 });};
 saveupdate.addEventListener("click",savecardsafupdate);
-theValueNew = null;
+editingCard = null;
+
+//searchcard
+search.addEventListener("input",searchcard)
+function searchcard(){
+let searchValue = search.value.toLowerCase().trim();
+let searchallcard = allCards.filter(function (card){
+ return card.name.toLowerCase().includes(searchValue)
+ ||
+ card.email.toLowerCase().includes(searchValue)
+ ||
+ card.phonne.includes(searchValue)
+ ||
+ card.group.toLowerCase().includes(searchValue)
+ ; 
+})
+displaycards(searchallcard)
+}
