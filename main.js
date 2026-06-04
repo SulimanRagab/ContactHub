@@ -21,6 +21,7 @@ let buttonX = document.getElementById("X")
  function displaynone(){
   form.style.display= "none";
   bllur.style.display= "none";
+  clearinputapAddcontact()
 }
 buttonX.addEventListener("click",displaynone)
 canclebutton.addEventListener("click",displaynone)
@@ -53,14 +54,19 @@ let valuephone = document.getElementById("phone")
 let valueEmail = document.getElementById("email")
 let valueAddres = document.getElementById("addres")
 let valuegroup = document.getElementById("group")
+let favoritecheck = document.getElementById("favoritecheck")
+let emergencycheck = document.getElementById("emergencycheck")
 // search
 let search = document.getElementById("search")
 //
- let allCards = [];
+ let allCards = []; 
  if(localStorage.getItem("storageCards")){
    allCards = JSON.parse(localStorage.getItem("storageCards"))
  displaycards(allCards);
- } let regex = /^01[0125]\d{8}$/;
+ displayFavoriteCards();
+ displayEmergencyCards()
+ } 
+ let regex = /^01[0125]\d{8}$/;
 function validatephone() {
    if(regex.test(valuephone.value)) {
       phoneMessage.innerHTML ="";
@@ -85,7 +91,9 @@ if(regexemail.test(valueEmail.value)){
   phonne:valuephone.value,
   email:valueEmail.value,
   addrs:valueAddres.value,
-  group:valuegroup.value
+  group:valuegroup.value,
+  favorite:favoritecheck.checked,
+  Emergency:emergencycheck.checked,
  };
  if(!validitiondata1()){
   display()
@@ -104,12 +112,15 @@ Swal.fire({
   icon: "success",
   draggable: true
 });
+clearinputapAddcontact()
 return true;
 }
 function allevents(){
  let success = createContact()
 if(success){
    displaycards(allCards);
+   displayFavoriteCards();
+   displayEmergencyCards();
 }}
 function clearinputapAddcontact(){
   viewimge.src = "imeg/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.jpg";
@@ -119,84 +130,11 @@ valuephone.value = "";
 valueEmail.value = "";
 valueAddres.value = "";
 valuegroup.value = "";
+favoritecheck.checked = false;
+emergencycheck.checked = false;
 } 
 displaycards(allCards);
 saveContact.addEventListener("click",allevents)
- function displaycards(Cards){
-   if(Cards.length === 0){
-let htmlmarkupmessage = `<div class="message">
-  <i class="fa-solid fa-address-book"></i>
-  <p class="nocontacts">No contacts found <br> <span class="addContact">Click "Add Contact" to get started</span></p>
-  <button onclick="display(); editButton();" class="brtn-2" <span><i class="fa-solid fa-plus"></i></span>
-    Add Contact
-  </button>
-</div>`;
-document.getElementById("upcard").innerHTML = htmlmarkupmessage;
-document.getElementById("cardsNumber").innerHTML =0;
-document.getElementById("numbercard2").innerHTML =0;
-return;
-} 
-   let htmlMarkupCards = "";
-   let numbercards = "";
-for(let i = 0; i < Cards.length; i++){
- let imagmarkup = "";
- if(Cards[i].imag){
-  imagmarkup = `<img src="${Cards[i].imag}" alt="">`;
- }else{
-  imagmarkup = `<div class="elseimage bg-black">${Cards[i].name ? Cards[i].name[0] :"?" }</div>`;
- }
-
-  htmlMarkupCards += `
-  <div class="card ms-3 col-md-5">
-  <div class="d-flex">
-    <div class="icts">
-      ${imagmarkup}
-    </div>
-    <div class="tx">
-      <h4 id="neem" style=" color: #000000; font-size: 20px;font-weight: 500;margin-left: 10px">${Cards[i].name}</h4>
-          <div class="d-flex">
-            <i id="er" class="fa-solid fa-phone"></i>
-            <p id="num" style="color: #657186; font-size: medium;font-weight: 500;margin-left: 10px;">${Cards[i].phonne}
-            </p>
-          </div>
-    </div>
-  </div>
-  <div>
-    <div class="emaile">
-      <i id="fa-emaile" class="fa-solid fa-envelope"></i>
-      <p id="eme" style="color: #657186;" class="txp">${Cards[i].email}</p>
-    </div>
-    <div class="Addrs">
-      <i id="fa-loction" class="fa-solid fa-location-dot"></i>
-      <p id="loc" style="color: #657186;" class="txp">${Cards[i].addrs}</p>
-    </div>
-  </div>
-  <div>
-    <p class="Group">${Cards[i].group}</p>
-  </div>
-  <div id="endcard">
-    <div class="icons container">
-      <div>
-        <i id="fa-dd" class="fa-solid fa-phone" style="color: #63E6BE;"></i>
-        <i id="fa-dd" class="fa-solid fa-envelope" style="color: #6e36f2;"></i>
-      </div>
-      <div class="icons-2">
-        <i class=" fa-solid fa-star" style="color: #657186;"></i>
-        <i class="fa-solid fa-heart-pulse" style="color: #657186;"></i>
-        <i onclick="cardsUpdate(${Cards[i].id})" class="fa-solid fa-pen"></i>
-        <i onclick="validdelete(${Cards[i].id} ,'${Cards[i].name}')" class="fa-solid fa-trash"></i>
-      </div>
-    </div>
-  </div>
-
-</div>
-`;
- numbercards = Cards.length
-}
-document.getElementById("upcard").innerHTML = htmlMarkupCards;
-document.getElementById("cardsNumber").innerHTML =  numbercards;
-document.getElementById("numbercard2").innerHTML =  numbercards;
-}
 
 let iconDelete = document.getElementById("iconDelete");
 function deletecards(id){
@@ -205,6 +143,8 @@ allCards = allCards.filter(function (card){
 })
 localStorage.setItem("storageCards",JSON.stringify(allCards));
 displaycards(allCards);
+displayFavoriteCards();
+displayEmergencyCards()
 }
 function validdelete(id,name){
   Swal.fire({
@@ -244,6 +184,8 @@ valuephone.value = editingCard.phonne;
 valueEmail.value = editingCard.email;
 valueAddres.value= editingCard.addrs;
 valuegroup.value = editingCard.group;
+favoritecheck.checked = editingCard.favorite;
+emergencycheck.checked = editingCard.Emergency;
 display()
 editButtonupdate()
 }
@@ -251,7 +193,7 @@ function savecardsafupdate(){
    if(!editingCard){
     return;
   }
-  
+  // console.log(fileimag.files[0]);
   if(fileimag.files[0]){
   editingCard.imag = viewimge.src;  
   }
@@ -260,6 +202,9 @@ editingCard.phonne = valuephone.value;
 editingCard.email = valueEmail.value;
 editingCard.addrs = valueAddres.value;
 editingCard.group = valuegroup.value;
+editingCard.favorite = favoritecheck.checked;
+editingCard.Emergency = emergencycheck.checked;
+
  if(!validitiondata1()){
   display()
    return;
@@ -272,6 +217,8 @@ localStorage.setItem("storageCards",JSON.stringify(allCards));
 displaycards(allCards);;
 clearinputapAddcontact();
 displaynone();
+displayFavoriteCards();
+displayEmergencyCards();
 Swal.fire({
   title: "Updated!",
   icon: "success",
@@ -296,4 +243,9 @@ let searchallcard = allCards.filter(function (card){
  ; 
 })
 displaycards(searchallcard)
+}
+/// 
+//emer  
+  function callContact(phone){    
+  window.location.href = `tel:${phone}`;
 }
