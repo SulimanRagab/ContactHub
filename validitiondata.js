@@ -1,3 +1,21 @@
+
+let regex = /^01[0125]\d{8}$/;
+function validatephone() {
+   if(regex.test(valuephone.value)) {
+      phoneMessage.innerHTML ="";
+   } else {
+      phoneMessage.innerHTML = "Please enter a valid Egyptian phone number !";
+   }
+}valuephone.addEventListener("input",validatephone);
+let regexemail = /^[a-z0-9]+@[a-z]+\.[a-z]{2,}$/i;
+function validateemaile(){
+if(regexemail.test(valueEmail.value)){
+  emailMessage.innerHTML ="";
+} else{
+  emailMessage.innerHTML = "Please enter a valid email address!";
+}
+}valueEmail.addEventListener("input",validateemaile);
+
 function validitiondata1(){
   if(valuename.value.trim() === ""){
  Swal.fire({icon: "error",
@@ -43,15 +61,16 @@ function validitiondata2(){
   }
   return true;
 }
+//validUbdate
 function dataUpdateValidition(){
  let isphone = false;
  let isemaile = false;
   for(let i = 0; i < allCards.length; i++){
  
- if(allCards[i].id !== theValueNew.id &&
+ if(allCards[i].id !== editingCard.id &&
   allCards[i].phonne === valuephone.value){
   isphone = true;
- }if(allCards[i].id !== theValueNew.id &&
+ }if(allCards[i].id !== editingCard.id &&
   allCards[i].email === valueEmail.value){
     isemaile = true;
   }}
@@ -68,4 +87,24 @@ function dataUpdateValidition(){
   }
   return true;
 }
-
+//validDelete
+function validdelete(id,name){
+  Swal.fire({
+  title: "Delete Contact?",
+  text: `Are you sure you want to delete "${name}" ? This action cannot be undone.`,
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#d33",
+  cancelButtonColor: "#3085d6",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed){
+    deletecards(id);
+  Swal.fire({
+    title: "Deleted!",
+    text: "Your file has been deleted.",
+    icon: "success",
+  }); };
+  
+});
+}  

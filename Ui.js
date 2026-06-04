@@ -80,7 +80,7 @@ imagmarkup = `
     <div class="icons container">
       <div>
         <i onclick="callContact('${Cards[i].phonne}')" class="fa-solid fa-phone"></i>
-        <i class="fa-solid fa-envelope"></i>
+        <i onclick="sendEmail('${Cards[i].email}')" class="fa-solid fa-envelope"></i>
       </div>
       <div class="icons-2">
         <i  onclick="staring(${Cards[i].id})"
