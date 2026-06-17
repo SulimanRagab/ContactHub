@@ -18,25 +18,23 @@
   rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: #f7f6fd;">
-  <header>
-    <nav class="navbar d-flex justify-content-between">
+<body>
+  <header class="upnavbar">
+    <nav class="navbar ">
       <div class="logo">
         <div><i id="fa-slid" class="fa-solid fa-address-book"></i></div>
         <div class="d-block">
-          <h1 class="textLogo">Contact<span style="color:#5c35f8;">Hub</span><p class="p1">Smart Contact Manager</p></h1>
+          <h1 class="textLogo">Contact<span style="color:#8126FE;">Hub</span><p class="p1">Smart Contact Manager</p></h1>
         </div>
       </div>
 
       <div class="buttonAndPhoto d-flex">
-        <button id="addContact" class="addContactButton"><span><i class="fa-solid fw-4 fa-plus"></i></span>Add Contact</button>
+        <button id="addContact" class="addContactButton"><span><i class="fa-solid fw-4 fa-plus"></i></span>Add <span class="contact">Contact</span></button>
         <i class="fa-solid fa-gear"></i>
         <i class="fa-solid fa-bell"></i>
-        <img class="imeeg me-3" src="imeg/imgi_1_avatar-4.jpg" alt="">
-        <div id="from" class="w-50 h-50 bg-info"></div>
+        <img class="imeeg" src="imeg/imgi_1_avatar-4.jpg" alt="">
       </div>
     </nav>
-  
   </header>
   <main>
     <div id="blur" class="bllur">
@@ -50,10 +48,11 @@
         <i id="X" class="fa-solid fa-xmark fa-lg fw-3"></i>
       </div>
       <hr style="width:100vh; height: 10px;">
-
+     <div class="photosSection">
       <input id="fileimag" class="addimg" type="file" accept="image/*" hidden>
       <img for="valimg" id="viewimge" class="def" src="imeg/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.jpg" alt="">
       <label for="valimg" id="openphoto" class="addimg"><i class="fa-solid fa-camera"></i>Change Photo</label>
+    </div>
       <!-- Name -->
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label mb-3">Full Name *</label>
@@ -104,37 +103,31 @@
         </div>
       </div>
 
-      <div class="d-flex">
-        <button type="button" id="cancle-button" class="brtncencel">Cancle</button>
-        <button type="button" id="saveContact" class="brtn">Save Contact</button>
-        <button type="button" id="saveupdate" class="brtn" style="display: none;">Save Update</button>
+      <div class="allbutton">
+        <button type="button" id="cancle-button" class="buttoncencel">Cancle</button>
+        <button type="button" id="saveContact" class="buttonsave">Save Contact</button>
+        <button type="button" id="saveupdate" class="buttonsave" style="display: none;">Save Update</button>
       </div>
     </form>
 
     <!--  -->
-
-    <div class="d-flex mt-5 container justify-content-between">
+  <section class="items container mt-5">
+    <div class="definitionAtegories ">
       <div class="card-1 me-0">
         <div class="iv">
           <div class="childee">
             <i id="fa-siid" class="fa-solid me-3 fa-users-line"></i>
-            <div>
-              <h1 style="display: block;font-size: small ;font-weight: 600;">TOTAL<br><span class="fs-3 fw-bold"
+              <h1 class="card-1text">TOTAL<br><span class="fs-3 fw-bold"
                   id="cardsNumber"></span></h1>
-
-            </div>
           </div>
-
         </div>
       </div>
       <div class="card-1 me-0">
         <div class="iv">
           <div class="childee">
             <i id="fa-sid" class=" fa-solid me-3 fa-star"></i>
-            <div>
-              <h1 style="display: block;font-size: small ;font-weight: 600;">Favorites<br><span class="fs-3 fw-bold"
+              <h1 class="card-1text">FAVORITES<br><span class="fs-3 fw-bold"
                   id="favoritesNumber"></span></h1>
-            </div>
           </div>
         </div>
       </div>
@@ -142,25 +135,18 @@
         <div class="iv">
           <div class="childee">
             <i id="fa-sld" class="fa-solid me-3 fa-heart-pulse"></i>
-            <div>
-              <h1 style="font-size: small ;font-weight: 600;">Emergency<br><span class="fs-3 fw-bold" id="emergencyNumber"></span></h1>
-            </div>
+              <h1 class="card-1text">EMERGENCY<br><span class="fs-3 fw-bold" id="emergencyNumber"></span></h1>
           </div>
 
         </div>
       </div>
     </div>
-    <section class="container mt-5">
-      <div class="crr-1  col-lg-8">
-        <h1>All Contacts</h1>
+        <div class="cardAndcategories">
+          <div class="searchandcard">
+        <h1 class="fw-bold">All Contacts</h1>
         <p>Manage and organize your <span id="numbercard2"></span> contacts</p>
-        <input id="search" type="search"
-          placeholder= "🔍 Search by name, phone,or email, group...">
-            <!-- <div class="message">
-            <i class="fa-solid fa-address-book"></i>
-            <p class="nocontacts">No contacts found <br> <span class="addContact">Click "Add Contact" to get started</span></p>
-          </div> -->
-          <div class="row g-3 mt-2" id="upcard">
+        <input class="search" id="search" type="search"placeholder= "🔍 Search by name, phone,or email, group...">
+ <div class="upcard row g-3 mt-2" id="upcard">
           <!-- <div class="card ms-3 col-md-5">
   <div class="d-flex">
     <div class="icts">
@@ -205,10 +191,8 @@
   </div>
 
 </div> -->
-        </div>
-      </div>
-
-      <div class="categories  col-md-4">
+</div></div>
+      <div class="categories col-md-4">
         <div class="row g-2">
           <div id="favorites" class="favorites">
             <div class="yellow">
@@ -221,7 +205,7 @@
               </div>
             </div>
             
-            <div id="upstar">
+            <div class="upstar" id="upstar">
         </div>
       </div>
       <div class="emergency">
@@ -240,28 +224,24 @@
                 style="font-size:medium; color: #818994e4; font-weight: 400; position: absolute; top: 50%; left: 50%; transform: translate(-50%, 150%);">
                 No emergency contacts</h1>
             </div>-->
-            <div id="upemer"></div>
+            <div class="upemer" id="upemer"></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+        
+       
+</section>
+  
   </main>
-  <!-- <div id="che" class="app"><div class="checkk">
-    <div style="display: block; text-align: center; margin-top: 20%;"><i class="fa-solid mb-3 fs-3 fa-check" style="color: #63E6BE;"></i>
-    <h1>Updated!</h1>
-    <p>Contact has been updated successfully.</p></div>
-    
-  </div></div> -->
-
-  <!-- <div class="bac"><img src="imgi_1_avatar-4.jpg" alt=""></div>  -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="Ui.js"></script>
-  <script src="updateCode.js"></script>
-  <script src="searchCode.js"></script>
-  <script src="validitiondata.js"></script>
-  <script src="Favorites.js"></script>
-  <script src="emergency.js"></script>
-  <script src="main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="Ui.js"></script>
+<script src="validitiondata.js"></script>
+<script src="Favorites.js"></script>
+<script src="emergency.js"></script>
+<script src="main.js"></script>
+<script src="searchCode.js"></script>
+<script src="updateCode.js"></script>
 </body>
 
 </html>
