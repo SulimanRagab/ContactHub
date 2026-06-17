@@ -45,11 +45,10 @@ editingCard.Emergency = emergencycheck.checked;
    return;
 }
 localStorage.setItem("storageCards",JSON.stringify(allCards));
-displaycards(allCards);;
-clearinputapAddcontact();
-displaynone();
+displaycards(allCards);
 displayFavoriteCards();
 displayEmergencyCards();
+displaynone();
 Swal.fire({
   title: "Updated!",
   icon: "success",

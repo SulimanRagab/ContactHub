@@ -28,7 +28,7 @@ let colors = [
   if(favoriteCards.length === 0){
 let htmlstarmarkupmessage = `  <div id="nofav" style="position: relative; width: 400px; height: 100px; background-color: #ffffff;">
               <h1
-                style="font-size:medium; color: #818994e4; font-weight: 500; position: absolute; top: 50%; left: 50%; transform: translate(-90%, -50%);">
+                style="font-size:medium; color: #818994e4; font-weight: 500; position: absolute; top: 50%; left: 50%; transform: translate(-80%, -50%);">
                 No favorites yet</h1>
             </div>`;
 document.getElementById("upstar").innerHTML = htmlstarmarkupmessage;

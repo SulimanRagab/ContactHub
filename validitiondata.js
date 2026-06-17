@@ -1,21 +1,4 @@
 
-let regex = /^01[0125]\d{8}$/;
-function validatephone() {
-   if(regex.test(valuephone.value)) {
-      phoneMessage.innerHTML ="";
-   } else {
-      phoneMessage.innerHTML = "Please enter a valid Egyptian phone number !";
-   }
-}valuephone.addEventListener("input",validatephone);
-let regexemail = /^[a-z0-9]+@[a-z]+\.[a-z]{2,}$/i;
-function validateemaile(){
-if(regexemail.test(valueEmail.value)){
-  emailMessage.innerHTML ="";
-} else{
-  emailMessage.innerHTML = "Please enter a valid email address!";
-}
-}valueEmail.addEventListener("input",validateemaile);
-
 function validitiondata1(){
   if(valuename.value.trim() === ""){
  Swal.fire({icon: "error",
