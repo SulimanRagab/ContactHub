@@ -48,7 +48,7 @@ ContactHub/
 <h2>📸 Screenshots</h2>
 
 <h3>Desktop View</h3>
-<img src="imeg/Desktop.png" width="800">
+<img src="imeg/Descktop.png" width="800">
 
 <h3>iPad View</h3>
 <img src="imeg/aipad.png" width="500">
