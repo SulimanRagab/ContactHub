@@ -48,13 +48,13 @@ ContactHub/
 <h2>📸 Screenshots</h2>
 
 <h3>Desktop View</h3>
-<img src="imeg/Descktop.png" width="800">
+<img src="imeg/top.png" width="800">
 
 <h3>iPad View</h3>
-<img src="imeg/aipad.png" width="500">
+<img src="imeg/Mopaile_upscaled.png" width="500">
 
 <h3>Mobile View</h3>
-<img src="imeg/mobile-preview.png" width="300">
+<img src="imeg/aipad.png" width="300">
 
 Contributions to ContactHub are welcome and appreciated. To contribute, please fork the repository and submit a pull request with your changes.
 
